@@ -83,6 +83,9 @@ def main(args):
     # The model weights (that are considered the best) are loaded into the model.
     model.load_weights(checkpoint_filepath)
 
+    model.save(f'models/{args.model_nm}_{datetime.now().strftime("%Y%m%d_%H%M")}')
+
+    '''
     total_bicubic_psnr = 0.0
     total_test_psnr = 0.0
 
@@ -105,14 +108,13 @@ def main(args):
 
         logger.info(f'PSNR of low resolution image and high resolution image is {bicubic_psnr}')
         logger.info(f'PSNR of predict and high resolution is {test_psnr}')
-        plot_results(lowres_img, test_img_path.split('/')[-1], "low")
-        plot_results(highres_img, test_img_path.split('/')[-1], "high")
-        plot_results(prediction, test_img_path.split('/')[-1], "prediction")
+        # plot_results(lowres_img, test_img_path.split('/')[-1], "low")
+        # plot_results(highres_img, test_img_path.split('/')[-1], "high")
+        # plot_results(prediction, test_img_path.split('/')[-1], "prediction")
 
     logger.info("Avg. PSNR of lowres images is %.4f" % (total_bicubic_psnr / 10))
     logger.info("Avg. PSNR of reconstructions is %.4f" % (total_test_psnr / 10))
-
-    model.save(f'models/{args.model_nm}_{datetime.now ().strftime("%Y%m%d_%H%M")}')
+    '''
 
 
 if __name__ == '__main__':
