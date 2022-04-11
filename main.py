@@ -85,7 +85,6 @@ def main(args):
     total_bicubic_psnr = 0.0
     total_test_psnr = 0.0
 
-    '''
     for index, test_img_path in enumerate(test_img_paths):
         img = load_img(test_img_path)
         lowres_input = get_lowres_image(img, upscale_factor)
@@ -105,13 +104,13 @@ def main(args):
 
         logger.info(f'PSNR of low resolution image and high resolution image is {bicubic_psnr}')
         logger.info(f'PSNR of predict and high resolution is {test_psnr}')
-        plot_results(lowres_img, index, "lowres")
-        plot_results(highres_img, index, "highres")
-        plot_results(prediction, index, "prediction")
+        plot_results(lowres_img, test_img_path.split('/')[-1], "low")
+        plot_results(highres_img, test_img_path.split('/')[-1], "high")
+        plot_results(prediction, test_img_path.split('/')[-1], "prediction")
 
-    print("Avg. PSNR of lowres images is %.4f" % (total_bicubic_psnr / 10))
-    print("Avg. PSNR of reconstructions is %.4f" % (total_test_psnr / 10))
-    '''
+    logger.info("Avg. PSNR of lowres images is %.4f" % (total_bicubic_psnr / 10))
+    logger.info("Avg. PSNR of reconstructions is %.4f" % (total_test_psnr / 10))
+
     model.save(f'models/{args.model_nm}_{datetime.now ().strftime("%Y%m%d_%H%M")}')
 
 
@@ -123,8 +122,3 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     main(args)
-
-    img = load_img('frame/frame00002.jpg')
-    lowres_input_3 = get_lowres_image(img, upscale_factor=3)
-    lowres_input_2 = get_lowres_image(img, upscale_factor=2)
-    lowres_input_4 = get_lowres_image(img, upscale_factor=4)
