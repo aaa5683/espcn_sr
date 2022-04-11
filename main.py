@@ -117,9 +117,9 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('--extract_frame', default=False, type=bool)
+    parser.add_argument('--extract_frame', default=1, type=int)
     parser.add_argument('--upscale_factor', default=3, type=int)
-    parser.add_argument('--epochs', default=10, type=int)
+    parser.add_argument('--epochs', default=100, type=int)
     parser.add_argument('--model_nm', default='mymodel', type=str)
     args = parser.parse_args()
 
