@@ -1,0 +1,5 @@
+venv
+log
+data
+iu_videos/*.mp4
+.idea
