@@ -1,5 +1,9 @@
 #!/bin/bash
 
+MODEL_NM=$1
+
 . venv/bin/activate
 
-nohup python main.py --epochs 100
+python3 main.py --model_nm=${MODEL_NM}
+
+# nohup bash main.sh iu1_360p_134 &
