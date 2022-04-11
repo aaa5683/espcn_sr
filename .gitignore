@@ -3,3 +3,4 @@ log
 data
 iu_videos/*.mp4
 .idea
+predict_test_images
